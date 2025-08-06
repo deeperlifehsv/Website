@@ -3,12 +3,15 @@ import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'mda9x8xt'
+const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
+
 export default defineConfig({
   name: 'deeperlife-huntsville',
   title: 'Deeper Life Bible Church Huntsville',
 
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
-  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
+  projectId,
+  dataset,
 
   plugins: [
     deskTool({
