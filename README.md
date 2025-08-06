@@ -31,6 +31,14 @@ deeperlife-huntsville/
 │   ├── web/                 # Next.js frontend application
 │   │   ├── src/
 │   │   │   ├── app/         # App router pages
+|   |   |   |  ├─ api/                 # Route handlers (Next.js API routes)
+|   |   |   |  ├─ assets/              # Static assets served by Next.js
+|   |   |   |  │  ├─ church_scenes/    # Hero / header images
+|   |   |   |  │  └─ logo.png          # Church logo
+|   |   |   |  ├─ contact/             # /contact page (route segment)
+|   |   |   |  ├─ globals.css          # Global styles
+|   |   |   |  ├─ layout.tsx           # Root layout
+|   |   |   |  └─ page.tsx             # Home page
 │   │   │   ├── components/  # React components
 │   │   │   └── lib/         # Utilities and Sanity client
 │   │   ├── public/          # Static assets

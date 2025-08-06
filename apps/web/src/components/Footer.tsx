@@ -10,9 +10,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Church Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">DL</span>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="relative w-10 h-10 overflow-hidden rounded-lg">
+                <img
+                  src="/assets/logo.png"
+                  alt="Deeper Life Bible Church Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h3 className="text-lg font-bold">Deeper Life Bible Church</h3>
             </div>
