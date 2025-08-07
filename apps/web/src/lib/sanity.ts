@@ -30,6 +30,50 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
+// Helper function for fetching data
+export async function fetchGroq<T>(query: string, params: Record<string, any> = {}, tags?: string[]): Promise<T> {
+  return client.fetch(query, params, {
+    cache: 'force-cache',
+    next: {
+      tags: tags || ['sanity'],
+      revalidate: 60, // Revalidate every minute
+    },
+  })
+}
+
+// Data fetchers
+export async function getHomepage() {
+  return fetchGroq(queries.homepage, {}, ['homepage'])
+}
+
+export async function getSiteSettings() {
+  return fetchGroq(queries.siteSettings, {}, ['site-settings'])
+}
+
+export async function getSermons() {
+  return fetchGroq(queries.sermons, {}, ['sermons'])
+}
+
+export async function getSermon(slug: string) {
+  return fetchGroq(queries.sermon, { slug }, ['sermons'])
+}
+
+export async function getEvents() {
+  return fetchGroq(queries.events, {}, ['events'])
+}
+
+export async function getEvent(slug: string) {
+  return fetchGroq(queries.event, { slug }, ['events'])
+}
+
+export async function getMinistries() {
+  return fetchGroq(queries.ministries, {}, ['ministries'])
+}
+
+export async function getAboutPage() {
+  return fetchGroq(queries.about, {}, ['about'])
+}
+
 // GROQ queries
 export const queries = {
   // Homepage data

@@ -3,14 +3,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, MapPin, Users, Heart, Book, ArrowRight, CheckCircle } from 'lucide-react'
 import { HeroSlider } from '@/components/HeroSlider'
-import { motion } from 'framer-motion'
+import { getHomepage, getSiteSettings, getMinistries } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'Home | Deeper Life Bible Church Huntsville',
   description: 'Welcome to Deeper Life Bible Church Huntsville. Join us for Sunday worship, Bible study, and fellowship in the heart of Alabama.',
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch data from Sanity
+  const [homepage, siteSettings, ministries] = await Promise.all([
+    getHomepage(),
+    getSiteSettings(), 
+    getMinistries()
+  ])
   return (
     <div className="min-h-screen">
       {/* Hero Slider */}
