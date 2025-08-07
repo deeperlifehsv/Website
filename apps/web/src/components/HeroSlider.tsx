@@ -137,7 +137,7 @@ export function HeroSlider({
                   className={`inline-flex items-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 ${
                     slides[currentSlide].cta!.secondary
                       ? 'bg-white/10 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm'
-                      : 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg hover:shadow-xl'
+                      : 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg hover:shadow-xl border-l-4 border-accent-500'
                   }`}
                 >
                   {slides[currentSlide].cta!.text}

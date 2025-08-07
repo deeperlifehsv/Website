@@ -10,8 +10,9 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 :root {
-  --primary-green: #16a34a;
-  --primary-navy: #0c4a6e;
+  --primary-green: #355783;
+  --primary-navy: #305380;
+  --accent-red: #a84647;
   --cream-bg: #fefcf9;
 }
 
