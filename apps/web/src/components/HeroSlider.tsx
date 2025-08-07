@@ -124,10 +124,12 @@ export function HeroSlider({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
-              {slides[currentSlide].title}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white drop-shadow-2xl">
+              <span className="bg-gradient-to-r from-white via-white to-magenta-300 bg-clip-text text-transparent">
+                {slides[currentSlide].title}
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl lg:text-3xl font-light max-w-3xl mx-auto leading-relaxed text-white drop-shadow-lg bg-black/20 backdrop-blur-sm rounded-2xl px-8 py-4">
               {slides[currentSlide].subtitle}
             </p>
             {slides[currentSlide].cta && (

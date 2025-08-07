@@ -36,8 +36,8 @@ export default async function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group">
-              <div className="bg-white rounded-2xl shadow-soft hover:shadow-soft-lg transition-all duration-300 p-8 text-center group-hover:-translate-y-2">
-                <div className="w-20 h-20 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 transition-colors duration-300">
+              <div className="bg-white rounded-2xl shadow-soft hover:shadow-soft-lg transition-all duration-300 p-8 text-center group-hover:-translate-y-2 border-l-4 border-accent-500">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-magenta-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gradient-to-br group-hover:from-primary-600 group-hover:to-magenta-600 transition-all duration-300">
                   <Clock className="h-10 w-10 text-primary-600 group-hover:text-white" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">Sunday Worship</h3>
@@ -265,7 +265,7 @@ export default async function HomePage() {
               </Link>
               <Link 
                 href="/give" 
-                className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-magenta-600 to-accent-600 hover:from-magenta-700 hover:to-accent-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-transparent hover:border-magenta-300"
               >
                 Give Online
               </Link>
