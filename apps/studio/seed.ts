@@ -2,7 +2,7 @@ import { createClient } from '@sanity/client'
 import dotenv from 'dotenv'
 
 // Load environment variables
-dotenv.config({ path: '../../.env' })
+dotenv.config({ path: './.env' })
 
 const client = createClient({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'mda9x8xt',
@@ -23,14 +23,14 @@ async function seedData() {
       siteName: 'Deeper Life Bible Church Huntsville',
       siteDescription: 'Welcome to Deeper Life Bible Church Huntsville. Join us for Sunday worship, Bible study, and fellowship in the heart of Alabama.',
       contactInfo: {
-        phone: '(256) 555-0123',
+        phone: '+1 (256) 679-4121',
         email: 'info@deeperlifehuntsville.org',
-        address: '123 Church Street\nHuntsville, AL 35801',
-        mapUrl: 'https://maps.google.com/...'
+        address: '200 Parkway Dr NW\nHuntsville, AL 35801',
+        mapUrl: 'https://maps.app.goo.gl/xF4uA5AxZfvSrvhC9'
       },
       socialMedia: {
         facebook: 'https://facebook.com/deeperlifehuntsville',
-        youtube: 'https://youtube.com/@deeperlifehuntsville',
+        youtube: 'https://www.youtube.com/@DeeperLifeHuntsville',
         instagram: 'https://instagram.com/deeperlifehuntsville'
       }
     }
@@ -60,8 +60,18 @@ async function seedData() {
         }
       ],
       sundayService: {
-        time: '10:00 AM - 12:00 PM',
+        time: '10:00 AM',
         location: 'Main Sanctuary'
+      },
+      weeklyServices: {
+        bibleStudy: {
+          time: 'Tuesdays 6:30 PM',
+          location: 'Zoom: 2566794121'
+        },
+        prayerMeeting: {
+          time: 'Wednesdays 6:30 PM', 
+          location: 'Zoom: 2566794121'
+        }
       },
       callToActions: [
         {
@@ -89,7 +99,7 @@ async function seedData() {
       title: 'About Us',
       mission: 'To help people grow deeper in their relationship with God through His Word, building stronger fellowship with one another, and reaching out to our community with the love of Christ.',
       vision: 'A community where every person experiences the transforming power of God\'s love and finds their purpose in Christ.',
-      history: 'Deeper Life Bible Church Huntsville was established in 2008 with a heart to serve the Huntsville community. We are part of the global Deeper Life Bible Church family, committed to biblical truth and spiritual growth.',
+      history: 'Deeper Life Bible Church Huntsville was established in 2009 with a heart to serve the Huntsville community. Over 15+ years of ministry, we have been committed to biblical truth, spiritual growth, and community outreach. We are part of the global Deeper Life Bible Church family.',
       pastor: {
         name: 'Pastor William Kumuyi',
         bio: 'Pastor Kumuyi has been serving in ministry for over 20 years, dedicated to teaching God\'s Word with clarity and passion.',

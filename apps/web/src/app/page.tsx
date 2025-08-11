@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, MapPin, Users, Heart, Book, ArrowRight, CheckCircle } from 'lucide-react'
 import { HeroSlider } from '@/components/HeroSlider'
+import { VerseOfTheDay } from '@/components/VerseOfTheDay'
 import { getHomepage, getSiteSettings, getMinistries } from '@/lib/sanity'
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default async function HomePage() {
                   <Clock className="h-10 w-10 text-primary-600 group-hover:text-white" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">Sunday Worship</h3>
-                <p className="text-lg text-gray-600 mb-2">10:00 AM - 12:00 PM</p>
+                <p className="text-lg text-gray-600 mb-2">10:00 AM</p>
                 <p className="text-sm text-gray-500">Main Sanctuary</p>
               </div>
             </div>
@@ -52,8 +53,8 @@ export default async function HomePage() {
                   <Book className="h-10 w-10 text-navy-600 group-hover:text-white" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">Bible Study</h3>
-                <p className="text-lg text-gray-600 mb-2">Wednesday 7:00 PM</p>
-                <p className="text-sm text-gray-500">Fellowship Hall</p>
+                <p className="text-lg text-gray-600 mb-2">Tuesdays 6:30 PM</p>
+                <p className="text-sm text-gray-500">Zoom: 2566794121</p>
               </div>
             </div>
             
@@ -63,8 +64,8 @@ export default async function HomePage() {
                   <Heart className="h-10 w-10 text-primary-600 group-hover:text-white" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">Prayer Meeting</h3>
-                <p className="text-lg text-gray-600 mb-2">Friday 6:00 PM</p>
-                <p className="text-sm text-gray-500">Prayer Room</p>
+                <p className="text-lg text-gray-600 mb-2">Wednesdays 6:30 PM</p>
+                <p className="text-sm text-gray-500">Zoom: 2566794121</p>
               </div>
             </div>
           </div>
@@ -141,7 +142,7 @@ export default async function HomePage() {
               <div className="text-primary-100">Weekly Services</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-heading font-bold mb-2">10+</div>
+              <div className="text-4xl md:text-5xl font-heading font-bold mb-2">5+</div>
               <div className="text-primary-100">Active Ministries</div>
             </div>
           </div>
@@ -236,6 +237,13 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Verse of the Day */}
+      <section className="bg-gray-50 section-padding">
+        <div className="container-custom">
+          <VerseOfTheDay className="shadow-soft-lg" />
         </div>
       </section>
 

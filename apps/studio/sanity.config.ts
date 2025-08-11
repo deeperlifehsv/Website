@@ -63,44 +63,44 @@ export default defineConfig({
   },
 
   document: {
-    // Add custom actions for revalidation
-    actions: (prev, context) => {
-      const defaultActions = prev.filter(({ action }) => 
-        action && !['publish', 'unpublish', 'discardChanges'].includes(action)
-      )
+    // // Add custom actions for revalidation
+    // actions: (prev, context) => {
+    //   const defaultActions = prev.filter(({ action }) => 
+    //     action && !['publish', 'unpublish', 'discardChanges'].includes(action)
+    //   )
       
-      return [
-        ...prev,
-        // Add a custom revalidate action
-        {
-          action: 'revalidate',
-          title: 'Revalidate Website',
-          onHandle: () => {
-            const webhookUrl = process.env.SANITY_STUDIO_WEBHOOK_URL || 'http://localhost:3000/api/revalidate'
-            const secret = process.env.SANITY_STUDIO_REVALIDATE_SECRET
+    //   return [
+    //     ...prev,
+    //     // Add a custom revalidate action
+    //     {
+    //       action: 'revalidate',
+    //       title: 'Revalidate Website',
+    //       onHandle: () => {
+    //         const webhookUrl = process.env.SANITY_STUDIO_WEBHOOK_URL || 'http://localhost:3000/api/revalidate'
+    //         const secret = process.env.SANITY_STUDIO_REVALIDATE_SECRET
             
-            if (secret) {
-              fetch(`${webhookUrl}?secret=${secret}`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  _type: context.schemaType,
-                  _id: context.documentId,
-                  slug: context.published?.slug,
-                }),
-              })
-              .then(() => {
-                console.log('Website revalidated successfully')
-              })
-              .catch((error) => {
-                console.error('Failed to revalidate website:', error)
-              })
-            }
-          },
-        },
-      ]
-    },
+    //         if (secret) {
+    //           fetch(`${webhookUrl}?secret=${secret}`, {
+    //             method: 'POST',
+    //             headers: {
+    //               'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //               _type: context.schemaType,
+    //               _id: context.documentId,
+    //               slug: context.published?.slug,
+    //             }),
+    //           })
+    //           .then(() => {
+    //             console.log('Website revalidated successfully')
+    //           })
+    //           .catch((error) => {
+    //             console.error('Failed to revalidate website:', error)
+    //           })
+    //         }
+    //       },
+    //     },
+    //   ]
+    // },
   },
 })

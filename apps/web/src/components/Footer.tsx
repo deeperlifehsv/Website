@@ -24,13 +24,13 @@ export function Footer() {
               A place where faith comes alive and community thrives in Huntsville, Alabama.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors">
+              <a href="https://facebook.com/deeperlifehuntsville" className="text-gray-300 hover:text-primary-400 transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors">
+              <a href="https://www.youtube.com/@DeeperLifeHuntsville" className="text-gray-300 hover:text-primary-400 transition-colors">
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary-400 transition-colors">
+              <a href="https://instagram.com/deeperlifehuntsville" className="text-gray-300 hover:text-primary-400 transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
@@ -74,15 +74,17 @@ export function Footer() {
             <div className="space-y-2 text-gray-300">
               <div>
                 <p className="font-medium">Sunday Worship</p>
-                <p>10:00 AM - 12:00 PM</p>
+                <p>10:00 AM</p>
               </div>
               <div>
                 <p className="font-medium">Bible Study</p>
-                <p>Wednesday 7:00 PM</p>
+                <p>Tuesdays 6:30 PM</p>
+                <p className="text-sm text-gray-400">Zoom: 2566794121</p>
               </div>
               <div>
                 <p className="font-medium">Prayer Meeting</p>
-                <p>Friday 6:00 PM</p>
+                <p>Wednesdays 6:30 PM</p>
+                <p className="text-sm text-gray-400">Zoom: 2566794121</p>
               </div>
             </div>
           </div>
@@ -94,13 +96,13 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary-400 mt-0.5 flex-shrink-0" />
                 <div className="text-gray-300">
-                  <p>123 Church Street</p>
+                  <p>200 Parkway Dr NW</p>
                   <p>Huntsville, AL 35801</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary-400 flex-shrink-0" />
-                <span className="text-gray-300">(256) 555-0123</span>
+                <span className="text-gray-300">+1 (256) 679-4121</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary-400 flex-shrink-0" />
