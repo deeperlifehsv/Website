@@ -4,66 +4,26 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-interface HeroSlide {
-  id: number
-  image: string
-  title: string
-  subtitle: string
-  cta?: {
-    text: string
-    href: string
-    secondary?: boolean
-  }
-}
-
-const defaultSlides: HeroSlide[] = [
-  {
-    id: 1,
-    image: '/assets/church_scenes/worship.jpg',
-    title: 'Welcome to Deeper Life Bible Church',
-    subtitle: 'Experience the transforming power of God\'s love in a community that cares',
-    cta: {
-      text: 'Join Us Sunday',
-      href: '/contact',
-    }
-  },
-  {
-    id: 2,
-    image: '/assets/church_scenes/worship_session.jpg',
-    title: 'Growing in Faith Together',
-    subtitle: 'Discover your purpose through biblical teaching and authentic fellowship',
-    cta: {
-      text: 'Learn More',
-      href: '/about',
-      secondary: true
-    }
-  },
-  {
-    id: 3,
-    image: '/assets/church_scenes/Backview.jpg',
-    title: 'A Place to Belong',
-    subtitle: 'Find your spiritual home in Huntsville, Alabama',
-    cta: {
-      text: 'Connect With Us',
-      href: '/contact',
-    }
-  }
-]
+import { urlFor } from '@/lib/sanity'
+import { Homepage } from '@/types/sanity'
 
 interface HeroSliderProps {
-  slides?: HeroSlide[]
-  autoplay?: boolean
-  autoplayDelay?: number
+  homepage: Homepage;
 }
 
-export function HeroSlider({ 
-  slides = defaultSlides, 
-  autoplay = true, 
-  autoplayDelay = 5000 
-}: HeroSliderProps) {
+export function HeroSlider({ homepage }: HeroSliderProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(autoplay)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const slides = homepage.heroSlides || []
+  const autoplayDelay = 5000 // 5 seconds delay between slides
+
+  // Debug: Check if slides data is being received correctly
+  console.log('Hero Slides:', slides)
+
+  // Return early if no slides
+  if (!slides.length) {
+    return null
+  }
 
   useEffect(() => {
     if (!isPlaying) return
@@ -102,14 +62,16 @@ export function HeroSlider({
           transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
-          <Image
-            src={slides[currentSlide].image}
-            alt={slides[currentSlide].title}
-            fill
-            className="object-cover"
-            priority={currentSlide === 0}
-            quality={90}
-          />
+          {slides[currentSlide]?.image && (
+            <Image
+              src={slides[currentSlide].image}
+              alt={slides[currentSlide]?.title || 'Slide image'}
+              fill
+              className="object-cover"
+              priority={currentSlide === 0}
+              quality={90}
+            />
+          )}
           <div className="absolute inset-0 bg-black/40" />
         </motion.div>
       </AnimatePresence>
@@ -126,11 +88,11 @@ export function HeroSlider({
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white drop-shadow-2xl">
               <span className="bg-gradient-to-r from-white via-white to-magenta-300 bg-clip-text text-transparent">
-                {slides[currentSlide].title}
+                {slides[currentSlide]?.title}
               </span>
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl font-light max-w-3xl mx-auto leading-relaxed text-white drop-shadow-lg bg-black/20 backdrop-blur-sm rounded-2xl px-8 py-4">
-              {slides[currentSlide].subtitle}
+              {slides[currentSlide]?.subtitle}
             </p>
             {slides[currentSlide].cta && (
               <div className="pt-8">

@@ -1,13 +1,18 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
+import { Ministry } from '@/types/sanity'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_DATASET || 'production'
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || process.env.SANITY_API_VERSION || '2024-01-01'
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 
-// if (!projectId) {
-//   throw new Error('Missing Sanity Project ID')
-// }
+if (!projectId) {
+  throw new Error('Missing Sanity Project ID - Please check your environment variables')
+}
+
+if (!dataset) {
+  throw new Error('Missing Sanity Dataset - Please check your environment variables')
+}
 
 export const client = createClient({
   projectId,
@@ -33,10 +38,9 @@ export function urlFor(source: any) {
 // Helper function for fetching data
 export async function fetchGroq<T>(query: string, params: Record<string, any> = {}, tags?: string[]): Promise<T> {
   return client.fetch(query, params, {
-    cache: 'force-cache',
+    cache: 'no-store', // Disable caching to always fetch fresh data
     next: {
       tags: tags || ['sanity'],
-      revalidate: 60, // Revalidate every minute
     },
   })
 }
@@ -67,7 +71,11 @@ export async function getEvent(slug: string) {
 }
 
 export async function getMinistries() {
-  return fetchGroq(queries.ministries, {}, ['ministries'])
+  return fetchGroq<Ministry[]>(queries.ministries, {}, ['ministries'])
+}
+
+export async function getMinistry(slug: string) {
+  return fetchGroq<Ministry>(queries.ministry, { slug }, ['ministries'])
 }
 
 export async function getAboutPage() {
@@ -76,16 +84,129 @@ export async function getAboutPage() {
 
 // GROQ queries
 export const queries = {
+  ministries: `
+    *[_type == "ministry"] | order(order asc) {
+      _id,
+      title,
+      slug,
+      summary,
+      description,
+      "image": image.asset->url,
+      leader {
+        name,
+        role,
+        "image": image.asset->url,
+        bio
+      },
+      meetingSchedule[] {
+        day,
+        time,
+        location
+      },
+      activities[] {
+        title,
+        description
+      },
+      contactInfo {
+        email,
+        phone,
+        socialMedia[] {
+          platform,
+          url
+        }
+      },
+      order
+    }
+  `,
+  ministry: `
+    *[_type == "ministry" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      summary,
+      description,
+      "image": image.asset->url,
+      leader {
+        name,
+        role,
+        "image": image.asset->url,
+        bio
+      },
+      meetingSchedule[] {
+        day,
+        time,
+        location
+      },
+      activities[] {
+        title,
+        description
+      },
+      contactInfo {
+        email,
+        phone,
+        socialMedia[] {
+          platform,
+          url
+        }
+      },
+      order
+    }
+  `,
   // Homepage data
   homepage: `
     *[_type == "homepage"][0] {
       _id,
       title,
-      heroTitle,
-      heroSubtitle,
-      heroImage,
+      heroSlides[] {
+        _key,
+        title,
+        subtitle,
+        "image": image.asset->url,
+        cta {
+          text,
+          href,
+          secondary
+        }
+      },
       welcomeMessage,
+      missionSection {
+        title,
+        statement,
+        bulletPoints[] {
+          _key,
+          point,
+          description
+        }
+      },
+      serviceTimesSection {
+        title,
+        sundayService {
+          time,
+          location
+        },
+        bibleStudy {
+          time,
+          location
+        },
+        prayerMeeting {
+          time,
+          location
+        }
+      },
+      welcomeMessage,
+      servicesSectionTitle,
+      servicesSectionSubtitle,
+      missionSectionTitle,
+      missionStatement,
       sundayService {
+        time,
+        location
+      },
+      bibleStudy {
+        time,
+        location
+      },
+      prayerMeeting {
         time,
         location
       },
@@ -179,6 +300,7 @@ export const queries = {
       _id,
       title,
       slug,
+      summary,
       description,
       image,
       leader

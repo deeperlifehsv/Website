@@ -13,13 +13,10 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
   env: {
-    SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
-    SANITY_DATASET: process.env.SANITY_DATASET,
-    SANITY_API_VERSION: process.env.SANITY_API_VERSION,
+    SANITY_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
+    SANITY_DATASET: process.env.SANITY_STUDIO_DATASET,
+    SANITY_API_VERSION: "2024-01-01",  // Set a fixed API version
   },
 }
 
